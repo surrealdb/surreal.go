@@ -1,0 +1,5 @@
+package: github.com/surrealdb/surreal.go
+import:
+- package: github.com/abcum/fibre
+- package: github.com/rs/xid
+  version: ^1.1.0
