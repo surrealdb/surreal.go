@@ -59,7 +59,7 @@ func (c *Socket) init() *Socket {
 				case res.Error == nil:
 					c.done(res.ID, nil, res.Result)
 				case res.Error != nil:
-					c.done(res.ID, res.Error.Message, res.Result)
+					c.done(res.ID, res.Error, res.Result)
 				}
 			}
 		}
