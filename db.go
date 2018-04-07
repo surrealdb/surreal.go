@@ -38,9 +38,17 @@ func (db *DB) Info() (interface{}, error) {
 	return db.send("Info")
 }
 
-func (db *DB) Auth(to string) (interface{}, error) {
-	return db.send("Auth", to)
+func (db *DB) Invalidate() (interface{}, error) {
+	return db.send("Invalidate")
 }
+
+func (db *DB) Authenticate(to string) (interface{}, error) {
+	return db.send("Authenticate", to)
+}
+
+// --------------------------------------------------
+// Methods for live queries
+// --------------------------------------------------
 
 func (db *DB) Live(tb string) (interface{}, error) {
 	return db.send("Live", tb)
@@ -48,6 +56,14 @@ func (db *DB) Live(tb string) (interface{}, error) {
 
 func (db *DB) Kill(id string) (interface{}, error) {
 	return db.send("Kill", id)
+}
+
+// --------------------------------------------------
+// Methods for static queries
+// --------------------------------------------------
+
+func (db *DB) Let(key string, val interface{}) (interface{}, error) {
+	return db.send("Let", key, val)
 }
 
 func (db *DB) Query(sql string, vars map[string]interface{}) (interface{}, error) {
@@ -77,6 +93,10 @@ func (db *DB) Modify(tb string, id interface{}, data map[string]interface{}) (in
 func (db *DB) Delete(tb string, id interface{}) (interface{}, error) {
 	return db.send("Delete", tb, id)
 }
+
+// --------------------------------------------------
+// Private methods
+// --------------------------------------------------
 
 func (db *DB) send(method string, params ...interface{}) (interface{}, error) {
 

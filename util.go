@@ -31,7 +31,7 @@ func recv(method string, res interface{}, err error) (interface{}, error) {
 
 		switch method {
 
-		case "Query":
+		case "Let", "Query":
 
 			return res, nil
 
